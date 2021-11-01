@@ -40,9 +40,9 @@ lightBsdf = Zero
 rayResult = traceIndirectLight(bsdfSampleDir)
 if rayResult.hit:
 	if rayResult.hit.geometry.isLight(){
-		lightBsdf = closure_f(rayResult.radiance,bsdfSampleDir)
+		lightBsdf = closure_f(rayResult.radiance/bsdfSamplePdf,bsdfSampleDir)
 	else:
-		indirect = closure_f(rayResult.radiance,bsdfSampleDir)
+		indirect = closure_f(rayResult.radiance/bsdfSamplePdf,bsdfSampleDir)
 
 
 misWeight = balanceHeuristics(LightSamplePdf,bsdfSamplePdf)
